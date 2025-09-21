@@ -49,3 +49,11 @@ Housekeeping
 Translation
   lang:find         Find and save available phrases to translate.
   lang:sync         Synchronize translation files from one language to another.
+
+  ---------------------
+  Github
+  
+  Git ini
+  git add .
+  git commit
+  git commit -m crudpeliculas

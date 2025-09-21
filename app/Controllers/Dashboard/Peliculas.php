@@ -1,8 +1,10 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard;
 
+use App\Controllers\BaseController;
 use App\Models\PeliculaModel;
+use Config\App;
 
 class Peliculas extends BaseController
 {
@@ -10,27 +12,29 @@ class Peliculas extends BaseController
     {
         $peliculaModel = new PeliculaModel();
 
-        echo view("/peliculas/index", [
+        echo view("peliculas/index", [
             'peliculas' => $peliculaModel->findAll(),
             ]
         );
     }
     public function new()
     {
-        echo view('/peliculas/new', [
+        echo view('peliculas/new', [
             'pelicula' => [
                 'titles' => '',
                 'description' => ''
             ]
         ]);
     }
+
     public function show($id)
     {
         $peliculaModel = new PeliculaModel();
-        echo view('/pelicula/show', [
+        echo view('peliculas/show', [
             'pelicula' => $peliculaModel->find($id)
         ]);
     }
+
     public function create()
     {
         $peliculaModel = new PeliculaModel();
@@ -40,16 +44,18 @@ class Peliculas extends BaseController
             'description' => $this->request->getPost('description'),
         ]);
         
-        echo ("Guardado con exito");
+        return redirect()->to('/dashboard/peliculas');
     }
+
     public function edit($id)
     {
         $peliculaModel = new PeliculaModel();
-        echo view('/peliculas/edit', [
+        echo view('peliculas/edit', [
             'id' => $id,
             'pelicula' => $peliculaModel->find($id)
         ]);
     }
+
     public function update($id)
     {
     $peliculaModel = new PeliculaModel();
@@ -58,12 +64,14 @@ class Peliculas extends BaseController
         'titles' => $this->request->getPost('titles'),
         'description' => $this->request->getPost('description'),
     ]);
-    echo ("Actualizado con exito");
+    
+    return redirect()->to('/dashboard/peliculas');
     }
+    
     public function delete($id)
     {
         $peliculaModel = new PeliculaModel();
         $peliculaModel->delete($id);
-        echo ("Eliminado con exito");
+        return redirect()->to('/dashboard/peliculas');
     }
 }

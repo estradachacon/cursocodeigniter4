@@ -1,6 +1,7 @@
 <?php
 
 namespace Config;
+
 $routes = Services::routes();
 
 if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
@@ -16,9 +17,13 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
+$routes->group('dashboard', function ($routes) {
+    $routes->presenter("peliculas", ['controller' => 'Dashboard\Peliculas', 'only' => ['index', 'new', 'create', 'edit', 'update', 'delete']]); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
+    $routes->presenter("categorias", ['controller' => 'Dashboard\Categorias', 'only' => ['index', 'new', 'create', 'edit', 'update', 'delete']]);
+});
+
 $routes->get("/", "Home::index");
-$routes->presenter("peliculas"); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
-$routes->presenter("categorias");
+
 
 
 // $routes->presenter("home"); esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador

@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Crear nueva pelicula</h1>
-    <form action="/peliculas/create" method="post">
-    <?= view('/peliculas/_form',['op'=>'Crear']) ?>
+    <form action="create" method="post">
+    <?= view('peliculas/_form',['op'=>'Crear']) ?>
     </form>
 </body>
 </html>

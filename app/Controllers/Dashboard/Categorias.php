@@ -1,7 +1,8 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard;
 
+use App\Controllers\BaseController;
 use App\Models\CategoriasModel;
 
 class Categorias extends BaseController
@@ -38,7 +39,7 @@ class Categorias extends BaseController
             'categoryName' => $this->request->getPost('categoryName'),
         ]);
         
-        echo ("Guardado con exito");
+        return redirect()->to('/dashboard/categorias');
     }
     public function edit($id)
     {
@@ -48,6 +49,7 @@ class Categorias extends BaseController
             'categorias' => $categoriasModel->find($id)
         ]);
     }
+
     public function update($id)
     {
     $categoriasModel = new categoriasModel();
@@ -55,12 +57,13 @@ class Categorias extends BaseController
     $categoriasModel->update($id, [
         'categoryName' => $this->request->getPost('categoryName')
     ]);
-    echo ("Actualizado con exito");
+    return redirect()->to('/dashboard/categorias');
     }
+
     public function delete($id)
     {
         $categoriasModel = new CategoriasModel();
         $categoriasModel->delete($id);
-        echo ("Eliminado con exito");
+        return redirect()->to('/dashboard/categorias');
     }
 }

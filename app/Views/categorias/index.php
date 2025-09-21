@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Listado de Categorias</h1>
-    <a href='/categorias/new'><i class="fa-solid fa-pen-to-square">Crear categoria</i></a>
+    <a href='categorias/new'><i class="fa-solid fa-pen-to-square">Crear categoria</i></a>
     <table>
         <tr>
             <th>Titulo</th>
@@ -17,14 +17,14 @@
         <tr>
             <td><?= $value ['categoryName']?></td>
             <td>
-                <a href='/categorias/edit/<?= $value ['id'] ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
-                <form action="/categorias/delete/<?= $value ['id'] ?>" method="post">
+                <a href='/dashboard/categorias/edit/<?= $value ['id'] ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
+                <form action="/dashboard/categorias/delete/<?= $value ['id'] ?>" method="post">
                     <button type="submit">Eliminar</button>
                 </form>
             </td>
         </tr>
     <?php endforeach ?>
     </table>
-    <a href='/peliculas'><i class="fa-solid fa-pen-to-square">Volver</i></a>
+    <a href='/dashboard/peliculas'><i class="fa-solid fa-pen-to-square">Volver</i></a>
 </body>
 </html>

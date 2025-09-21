@@ -18,6 +18,7 @@ $routes->set404Override();
 
 $routes->get("/", "Home::index");
 $routes->presenter("peliculas"); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
+$routes->presenter("categorias");
 
 
 // $routes->presenter("home"); esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador

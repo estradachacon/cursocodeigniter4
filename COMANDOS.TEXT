@@ -53,7 +53,13 @@ Translation
   ---------------------
   Github
   
-  Git ini
+  Git init
   git add .
-  git commit
-  git commit -m crudpeliculas
+  git commit -m "crudpeliculas"
+  git branch -M main
+  git remote add origin https://github.com/estradachacon/cursocodeigniter4.git
+  git push -u origin main
+  git tag v0.1 -m "Crud"
+  git push --tags
+
+  Siempre al hacer una instalación con pull, se debe hacer un composer install para que composer instale las dependencias que se estan ignorando

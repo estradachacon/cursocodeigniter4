@@ -8,10 +8,11 @@
 <body>
     <h1>Listado de películas </h1>
     <a href='/peliculas/new'><i class="fa-solid fa-pen-to-square">Crear nuevo</i></a>
+    <a href='/categorias'><i class="fa-solid fa-pen-to-square">Ver categorias</i></a>
     <table>
         <tr>
             <th>Titulo</th>
-            <th>Categoria</th>
+            <th>Comentarios</th>
         </tr>
     <?php foreach ($peliculas as $key => $value) : ?>
         <tr>

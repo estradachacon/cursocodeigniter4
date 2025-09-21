@@ -1,0 +1,33 @@
+La estructura de un model.php es:
+-Apertura php
+-Ubicación del archivo: Ejemplo: namespace app\...
+-Clase (nombre del archivo y modelo) extends model
+-Cuerpo de la clase {}, ahí adentro van las propiedades
+    -Pueden ser solo las tablas como por ejemplo: protected $table            = 'peliculas';
+    -Pueden ser funciones cuando se necesite unir tablas, buscar con caracteristicas y otros. 
+        Ejemplo: public function obtenerActivos()
+                    {
+                        return $this->where('estado', 'activo')->findAll();
+                    }
+
+Estructura de un controlador: 
+-Apertura de php
+-Ubicación del archivo: Ejemplo: namespace app\...
+-Invocamos el nombre del modelo que vamos a usar, o los nombres si son más de uno. Ejemplo: use App\Models\PeliculaModel;
+-Clase (nombre del archivo y controlador) extends BaseController
+-Cuerpo de la clase {}, ahí adentro van las propiedades que generalmente serán las funciones que tomarán la data entregada por el modelo, luego en ella es importante crear una instancia de la clase, como esto $peliculaModel = new PeliculaModel(); lo cual hace que el controlador al levantar la funcion tambien cree el llamado al modelo
+-Luego tenemos la logica, y por ultimo lo que deseamos, si echo o return. 
+    Ejemplo:
+        public function index()
+        {
+        $peliculaModel = new PeliculaModel();
+
+        echo view("index", [
+            'peliculas' => $peliculaModel->findAll(),
+            ]
+        );
+        }
+
+Adentro de un modelo, esta funcion es bastante util para revisar lo que esta devolviendo un formulario
+dejar unico en una funcion
+var_dump($this->request->getPost('titles'));

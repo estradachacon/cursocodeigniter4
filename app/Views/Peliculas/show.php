@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $pelicula['titles'] ?></title>
-</head>
-<body>
+<?= $this->extend('Layouts/mainbody') ?>
+<?= $this->section('content') ?>
     <h1><?= $pelicula['titles'] ?></h1>
     <p><?= $pelicula['description'] ?></p>
-</body>
-</html>
+<?= $this->endSection() ?>

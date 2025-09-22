@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar registro</title>
-</head>
-<body>
+<?= $this->extend('Layouts/mainbody') ?>
+<?= $this->section('content') ?>
     <h1>Actualizar registro de categoria</h1>
     <form action="/dashboard/categorias/update/<?= $id ?>" method="post">
     <?= view('categorias/_form',['op'=>'Actualizar']) ?>
     </form>
-</body>
-</html>
+<?= $this->endSection() ?>

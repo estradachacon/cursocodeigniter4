@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Categorias</title>
-</head>
-<body>
-    <?= view('partials/_session') ?>
+<?= $this->extend('Layouts/mainbody') ?>
+<?= $this->section('content') ?>
     <h1>Listado de Categorias</h1>
     <a href='categorias/new'><i class="fa-solid fa-pen-to-square">Crear categoria</i></a>
     <table>
@@ -28,6 +20,4 @@
     <?php endforeach ?>
     </table>
     <a href='/dashboard/peliculas'><i class="fa-solid fa-pen-to-square">Volver</i></a>
-
-</body>
-</html>
+<?= $this->endSection() ?>

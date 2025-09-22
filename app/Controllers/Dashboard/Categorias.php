@@ -12,6 +12,7 @@ class Categorias extends BaseController
         $categoriasModel = new CategoriasModel();
 
         echo view("categorias/index", [
+            'title' => 'Lista de categorias',
             'categorias' => $categoriasModel->findAll(),
             ]
         );
@@ -19,6 +20,7 @@ class Categorias extends BaseController
     public function new()
     {
         echo view('/categorias/new', [
+        'title' => 'Crear categoria',
         'categorias' => [
                 'categoryName' => ''
             ]
@@ -47,6 +49,7 @@ class Categorias extends BaseController
     {
         $categoriasModel = new CategoriasModel();
         echo view('/categorias/edit', [
+            'title' => 'Editar pelicula',
             'id' => $id,
             'categorias' => $categoriasModel->find($id)
         ]);

@@ -18,7 +18,7 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
 $routes->group('dashboard', function ($routes) {
-    $routes->presenter("peliculas", ['controller' => 'Dashboard\Peliculas', 'only' => ['index', 'new', 'create', 'edit', 'update', 'delete']]); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
+    $routes->presenter("peliculas", ['controller' => 'Dashboard\Peliculas', 'only' => ['index', 'show', 'new', 'create', 'edit', 'update', 'delete']]); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
     $routes->presenter("categorias", ['controller' => 'Dashboard\Categorias', 'only' => ['index', 'new', 'create', 'edit', 'update', 'delete']]);
 });
 

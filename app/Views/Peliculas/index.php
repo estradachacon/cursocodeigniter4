@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Peliculas</title>
 </head>
 <body>
+    <?= view('partials/_session') ?>
     <h1>Listado de películas </h1>
     <a href='peliculas/new'><i class="fa-solid fa-pen-to-square">Crear nuevo</i></a>
     <a href='categorias'><i class="fa-solid fa-pen-to-square">Ver categorias</i></a>

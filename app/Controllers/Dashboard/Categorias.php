@@ -39,7 +39,9 @@ class Categorias extends BaseController
             'categoryName' => $this->request->getPost('categoryName'),
         ]);
         
-        return redirect()->to('/dashboard/categorias');
+        return redirect()->to('/dashboard/categorias')
+                         ->with('mensaje', 'Categoría creada con éxito')
+                         ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
     }
     public function edit($id)
     {
@@ -57,13 +59,18 @@ class Categorias extends BaseController
     $categoriasModel->update($id, [
         'categoryName' => $this->request->getPost('categoryName')
     ]);
-    return redirect()->to('/dashboard/categorias');
+    return redirect()->to('/dashboard/categorias')
+                     ->with('mensaje', 'Categoría actualizada con éxito')
+                     ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
     }
 
     public function delete($id)
     {
         $categoriasModel = new CategoriasModel();
         $categoriasModel->delete($id);
-        return redirect()->to('/dashboard/categorias');
+        return redirect()
+            ->to('/dashboard/categorias')
+            ->with('mensaje', 'Categoría eliminada con éxito')
+            ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast
     }
 }

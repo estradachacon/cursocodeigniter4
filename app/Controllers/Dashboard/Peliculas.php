@@ -44,7 +44,9 @@ class Peliculas extends BaseController
             'description' => $this->request->getPost('description'),
         ]);
         
-        return redirect()->to('/dashboard/peliculas');
+        return redirect()->to('/dashboard/peliculas')
+                         ->with('mensaje', 'Pelicula creada con éxito')
+                         ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
     }
 
     public function edit($id)
@@ -65,13 +67,17 @@ class Peliculas extends BaseController
         'description' => $this->request->getPost('description'),
     ]);
     
-    return redirect()->to('/dashboard/peliculas');
+    return redirect()->to('/dashboard/peliculas')
+                         ->with('mensaje', 'Pelicula actualizada con éxito')
+                         ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;;
     }
     
     public function delete($id)
     {
         $peliculaModel = new PeliculaModel();
         $peliculaModel->delete($id);
-        return redirect()->to('/dashboard/peliculas');
+        return redirect()->to('/dashboard/peliculas')
+                         ->with('mensaje', 'Pelicula eliminada con éxito')
+                         ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;;
     }
 }

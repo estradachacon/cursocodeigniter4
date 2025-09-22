@@ -67,15 +67,21 @@ class Peliculas extends BaseController
     public function update($id)
     {
         $peliculaModel = new PeliculaModel();
+        if ($this->validate('peliculas')) {
+            $peliculaModel->update($id, [
+                'titles' => $this->request->getPost('titles'),
+                'description' => $this->request->getPost('description'),
+            ]);
+            return redirect()->to('/dashboard/peliculas')
+                ->with('mensaje', 'Pelicula actualizada con éxito')
+                ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast
+        } else {
+            // Pasa el objeto del validador completo a la sesión
+            session()->setFlashdata('validation', $this->validator);
+        }
 
-        $peliculaModel->update($id, [
-            'titles' => $this->request->getPost('titles'),
-            'description' => $this->request->getPost('description'),
-        ]);
-
-        return redirect()->to('/dashboard/peliculas')
-            ->with('mensaje', 'Pelicula actualizada con éxito')
-            ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;;
+        // Asegúrate de redirigir al formulario si la validación falla
+        return redirect()->back()->withInput();
     }
 
     public function delete($id)

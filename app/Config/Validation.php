@@ -41,4 +41,15 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    // Reglas para el controlador de categorias
+    public $categorias = [
+        'categoryName' => 'required|min_Length[3]|max_length[30]',
+    ];
+
+    // Reglas para el controlador de peliculas
+    public $peliculas = [
+        'titles' => 'required|min_Length[3]|max_length[30]',
+        'description' => 'required|min_Length[3]|max_length[300]',
+    ];
 }

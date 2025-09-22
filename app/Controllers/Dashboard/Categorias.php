@@ -57,14 +57,21 @@ class Categorias extends BaseController
 
     public function update($id)
     {
-    $categoriasModel = new categoriasModel();
+        $categoriasModel = new CategoriasModel();
+        if ($this->validate('categorias')) {
+            $categoriasModel->update($id, [
+                'categoryName' => $this->request->getPost('categoryName')
+            ]);
+            return redirect()->to('/dashboard/categorias')
+                ->with('mensaje', 'Categoria actualizada con éxito')
+                ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast
+        } else {
+            // Pasa el objeto del validador completo a la sesión
+            session()->setFlashdata('validation', $this->validator);
+        }
 
-    $categoriasModel->update($id, [
-        'categoryName' => $this->request->getPost('categoryName')
-    ]);
-    return redirect()->to('/dashboard/categorias')
-                     ->with('mensaje', 'Categoría actualizada con éxito')
-                     ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
+        // Asegúrate de redirigir al formulario si la validación falla
+        return redirect()->back()->withInput();
     }
 
     public function delete($id)

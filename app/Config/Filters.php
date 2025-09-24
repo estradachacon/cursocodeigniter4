@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\MiFiltro;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -34,6 +35,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'mifiltro'      => MiFiltro::class,
     ];
 
     /**
@@ -72,13 +74,12 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+           //'mifiltro',
         ],
         'after' => [
             // 'honeypot',
             // 'secureheaders',
+            'toolbar',
         ],
     ];
 
@@ -106,5 +107,11 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'mifiltro' => [
+            'before' => [
+                'dashboard/peliculas'
+            ]
+        ]
+    ];
 }

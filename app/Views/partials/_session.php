@@ -6,7 +6,8 @@
             icon: '<?= session()->getFlashdata('tipo') ?? 'info' ?>',
             title: '<?= session()->getFlashdata('mensaje') ?>',
             showConfirmButton: false,
-            timer: 3000
+            timer: 3000,
+            timerProgressBar: true
         });
     </script>
 <?php endif; ?>
@@ -28,7 +29,8 @@
             title: 'Errores de validación',
             html: errorMessage,
             showConfirmButton: false,
-            timer: 3000
+            timer: 4000,
+            timerProgressBar: true
         });
     </script>
 <?php endif; ?>

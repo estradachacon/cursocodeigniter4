@@ -21,18 +21,10 @@ class Categorias extends BaseController
     {
         echo view('/categorias/new', [
         'title' => 'Crear categoria',
-        'categorias' => [
-                'categoryName' => ''
-            ]
+        'categorias' => new CategoriasModel(),
         ]);
     }
-    public function show($id)
-    {
-        $categoriasModel = new CategoriasModel();
-        echo view('/categorias/show', [
-            'categorias' => $categoriasModel->find($id)
-        ]);
-    }
+
     public function create()
     {
         $categoriasModel = new CategoriasModel();

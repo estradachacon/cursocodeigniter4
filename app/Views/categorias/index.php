@@ -9,10 +9,10 @@
         </tr>
     <?php foreach ($categorias as $key => $value) : ?>
         <tr>
-            <td><?= $value ['categoryName']?></td>
+            <td><?= $value->categoryName?></td>
             <td>
-                <a href='/dashboard/categorias/edit/<?= $value ['id'] ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
-                <form action="/dashboard/categorias/delete/<?= $value ['id'] ?>" method="post">
+                <a href='/dashboard/categorias/edit/<?= $value->id ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
+                <form action="/dashboard/categorias/delete/<?= $value->id ?>" method="post">
                     <button type="submit">Eliminar</button>
                 </form>
             </td>

@@ -10,12 +10,12 @@
         </tr>
     <?php foreach ($peliculas as $key => $value) : ?>
         <tr>
-            <td><?= $value ['titles']?></td>
-            <td><?= $value ['description']?></td>
+            <td><?= $value->titles?></td>
+            <td><?= $value->description?></td>
             <td>
-                <a href='peliculas/show/<?= $value ['id'] ?>'><i class="fa-solid fa-pen-to-square">Ver pelicula</i></a>
-                <a href='peliculas/edit/<?= $value ['id'] ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
-                <form action="/dashboard/peliculas/delete/<?= $value ['id'] ?>" method="post">
+                <a href='peliculas/show/<?= $value->id ?>'><i class="fa-solid fa-pen-to-square">Ver pelicula</i></a>
+                <a href='peliculas/edit/<?= $value->id ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>
+                <form action="/dashboard/peliculas/delete/<?= $value->id ?>" method="post">
                     <button type="submit">Eliminar</button>
                 </form>
             </td>

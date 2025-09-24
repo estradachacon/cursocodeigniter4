@@ -1,5 +1,5 @@
 <?= $this->extend('Layouts/mainbody') ?>
 <?= $this->section('content') ?>
-    <h1><?= $pelicula['titles'] ?></h1>
-    <p><?= $pelicula['description'] ?></p>
+    <h1><?= $peliculas->titles ?></h1>
+    <p><?= $peliculas->description ?></p>
 <?= $this->endSection() ?>

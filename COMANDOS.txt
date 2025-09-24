@@ -63,3 +63,53 @@ Translation
   git push --tags
 
   Siempre al hacer una instalación con pull, se debe hacer un composer install para que composer instale las dependencias que se estan ignorando
+
+
+  -----------------------------------
+  Comandos de modelos para las consultas a las bases de datos
+
+  Joins  // permite unir tablas
+  Los Joins se emplean para combinar resultados entre distintas tablas buscando por el campo relacional; 
+  en codeigniter, tenemos distinos tipos de joins (left, right, inner...) al igual que tenemos en SQL, como 
+  primer parametro de la funcion join() pasamos la tabla a relacionar, y como siguiente parametro, la igualdad. 
+
+  Ejemplo: 
+  $peliculaModel->asObject()
+    ->select('peliculas.*, categorias.titulo as categoria')
+    ->join('categorias', 'categorias.id = peliculas.categoria_id')
+    ->find();
+
+  Paginados: 
+  Funcion que puede ser simulada en SQL,  aunque en codeigniter vamos un paso mas alla; mas adelante
+  veremos como emplear esta funcion en detalle; pero en esencia es emplear la funcion de paginate() indicandole 
+  como parametro el nivel de paginado.
+
+  $peliculaModel->asObject()
+    ->select('peliculas.*, categorias.titulo as categoria')
+    ->join('categorias', 'categorias.id = peliculas.categoria_id')
+    ->paginate(10);
+  
+  Codiciones Where
+  Son fundamentales en la mayoria de las consultas que realizamos y por ende los tienes que tener presentes;
+  recibe dos parametros que corresponden a la columna a comparar y su valor.
+
+  Ejemplo:
+  $peliculaModel->asObject()
+    ->select('peliculas.*, categorias.titulo as categoria')
+    ->join('categorias', 'categorias.id = peliculas.categoria_id')
+    ->where('categorias.id, $categoria_id')
+
+  Para usar esta otra funcion:
+
+  $this->db->getCompiledSelect(); 
+  se requiere que se genere un query builder, que cree una instancia de conexion generica a la base de datos justo
+  antes de llamar el getCompiledSelect()
+
+  Ejemplo:
+
+  $db =\Config\Database::connect();
+  $builder = $db->table('peliculas');
+  return $builder->limit(10, 20)->getCompiledSelect();
+
+  Esto devuelve como tal el echo de la consulta SQL en pantalla
+  

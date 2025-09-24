@@ -23,10 +23,7 @@ class Peliculas extends BaseController
     public function new()
     {
         echo view('peliculas/new', [
-            'pelicula' => [
-                'titles' => '',
-                'description' => ''
-            ],
+            'pelicula' => new PeliculaModel(),
             'title' => 'Crear pelicula'
         ]);
     }
@@ -34,11 +31,21 @@ class Peliculas extends BaseController
     public function show($id)
     {
         $peliculaModel = new PeliculaModel();
+
+        echo view('peliculas/show', [
+            'title' => 'Datos de la pelicula',
+            'peliculas' => $peliculaModel->find($id)
+        ]
+        );
+    }
+/*     public function show($id)
+    {
+        $peliculaModel = new PeliculaModel();
         echo view('peliculas/show', [
             'title' => 'Datos de la pelicula',
             'pelicula' => $peliculaModel->find($id)
         ]);
-    }
+    } */
 
     public function create()
     {

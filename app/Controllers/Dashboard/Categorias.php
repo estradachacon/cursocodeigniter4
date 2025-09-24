@@ -37,13 +37,18 @@ class Categorias extends BaseController
     {
         $categoriasModel = new CategoriasModel();
 
-        $categoriasModel->insert([
-            'categoryName' => $this->request->getPost('categoryName'),
-        ]);
-        
-        return redirect()->to('/dashboard/categorias')
-                         ->with('mensaje', 'Categoría creada con éxito')
-                         ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
+        if ($this->validate('categorias')) {
+            $categoriasModel->insert([
+                'categoryName' => $this->request->getPost('categoryName')
+            ]);
+            return redirect()->to('/dashboard/categorias')
+                ->with('mensaje', 'Categoria creada con éxito')
+                ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast
+        } else {
+            // Pasa el objeto del validador completo a la sesión
+            session()->setFlashdata('validation', $this->validator);
+            return redirect()->back()->withInput();
+        }
     }
     public function edit($id)
     {
@@ -68,10 +73,8 @@ class Categorias extends BaseController
         } else {
             // Pasa el objeto del validador completo a la sesión
             session()->setFlashdata('validation', $this->validator);
-        }
-
-        // Asegúrate de redirigir al formulario si la validación falla
-        return redirect()->back()->withInput();
+            return redirect()->back()->withInput();
+        }   
     }
 
     public function delete($id)

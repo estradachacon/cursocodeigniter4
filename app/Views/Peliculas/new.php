@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear registro</title>
-</head>
-<body>
+<?= $this->extend('Layouts/mainbody') ?>
+<?= $this->section('content') ?>
     <h1>Crear nueva pelicula</h1>
     <form action="create" method="post">
     <?= view('peliculas/_form',['op'=>'Crear']) ?>
     </form>
-</body>
-</html>
+<?= $this->endSection() ?>

@@ -44,6 +44,12 @@ class Peliculas extends BaseController
     {
         $peliculaModel = new PeliculaModel();
 
+        if (!$this->validate('peliculas')) {
+            // Pasa el objeto del validador completo a la sesión
+            session()->setFlashdata('validation', $this->validator);
+            // Redirige de vuelta al formulario con los datos ingresados previamente
+            return redirect()->back()->withInput();
+        }else{
         $peliculaModel->insert([
             'titles' => $this->request->getPost('titles'),
             'description' => $this->request->getPost('description'),
@@ -52,7 +58,7 @@ class Peliculas extends BaseController
         return redirect()->to('/dashboard/peliculas')
             ->with('mensaje', 'Pelicula creada con éxito')
             ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;
-    }
+    }}
 
     public function edit($id)
     {

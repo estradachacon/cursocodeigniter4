@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class MiFiltro implements FilterInterface
+class DashboardFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,9 +25,11 @@ class MiFiltro implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if(false){
-        return redirect()->to('/dashboard/categorias');}
-        //
+ 
+        if (session()->get('usuario') && session()->get('usuario')->tipo !== 'admin') { 
+            return redirect()->to(route_to('usuario.login'))->with('mensaje', 'Autenticación para administradores')
+                ->with('tipo', 'error');
+        }
     }
 
     /**

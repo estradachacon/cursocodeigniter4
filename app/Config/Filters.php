@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\DashboardFilter;
 use App\Filters\MiFiltro;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
@@ -35,7 +36,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
-        'mifiltro'      => MiFiltro::class,
+        'DashboardFilter' => DashboardFilter::class,
     ];
 
     /**
@@ -108,9 +109,10 @@ class Filters extends BaseFilters
      * @var array<string, array<string, list<string>>>
      */
     public array $filters = [
-        'mifiltro' => [
+        'DashboardFilter' => [
             'before' => [
-                'dashboard/peliculas'
+                'dashboard',
+                'dashboard/*'
             ]
         ]
     ];

@@ -14,15 +14,16 @@ class Usuario extends BaseController
         $usuarioModel->insert([
             'usuario'   => 'admin',
             'email'     => 'admin@gmail.com',
-            'contrasena'=> $usuarioModel->contrasenaHash('123456')]);
+            'contrasena' => $usuarioModel->contrasenaHash('12345')
+        ]);
     }
 
     public function probar_contrasena()
     {
         $usuarioModel = new UsuarioModel();
-        echo $usuarioModel->contrasenaVerificar('123456', '$2y$10$u2urroTuPwwmUhvuMsrkp.SIxa9eHJgyD/4jNGwxcb1GGveoK6.0u');
+        echo $usuarioModel->contrasenaVerificar('12345', '$2y$10$4CZ7Gwvog665262LpyOvru0yA9h5IyEZpCMCk7Vngki67seGr396C');
     }
-    
+
     public function login()
     {
         echo view('web/usuario/login', [
@@ -37,23 +38,30 @@ class Usuario extends BaseController
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
         $usuario = $usuarioModel->select('id, usuario, email, contrasena, tipo')
-                                ->where('email', $email)
-                                ->orWhere('usuario', $email)
-                                ->first();
-        if(!$usuario){
+            ->where('email', $email)
+            ->orWhere('usuario', $email)
+            ->first();
+        if (!$usuario) {
             return redirect()->back()->with('mensaje', 'Usuario o contraseña invalida')
-                                     ->with('tipo', 'danger');
+                ->with('tipo', 'error');
         }
-        if(!$usuarioModel->contrasenaVerificar($contrasena, $usuario->contrasena)){
+        if ($usuarioModel->contrasenaVerificar($contrasena, $usuario->contrasena)) {
             $session = session();
             unset($usuario->contrasena);
             session()->set('usuario', $usuario);
 
             return redirect()->to('/dashboard/peliculas')->with('mensaje', 'Inicio de sesión exitoso, Bienvenid@ ' . $usuario->usuario)
-                                                        ->with('tipo', 'success');
+                ->with('tipo', 'success');
         }
         return redirect()->back()->with('mensaje', 'Usuario o contraseña invalida')
-                                 ->with('tipo', 'danger');
+            ->with('tipo', 'error');
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to(route_to('usuario.login'))->with('mensaje', 'Has cerrado sesión')
+            ->with('tipo', 'success');
     }
 
     public function register()
@@ -67,17 +75,16 @@ class Usuario extends BaseController
     {
         $usuarioModel = new UsuarioModel();
 
-        if($this->validate('usuarios'))
-        {
+        if ($this->validate('usuarios')) {
             $usuarioModel->insert([
                 'usuario'   => $this->request->getPost('usuario'),
                 'email'     => $this->request->getPost('email'),
-                'contrasena'=> $usuarioModel->contrasenaHash($this->request->getPost('contrasena'))
+                'contrasena' => $usuarioModel->contrasenaHash($this->request->getPost('contrasena'))
             ]);
             return redirect()->to(route_to('usuario.login'))->with('mensaje', 'Usuario registrado exitosamente, ya puedes iniciar sesión')
-                                     ->with('tipo', 'success');
+                ->with('tipo', 'success');
         }
-            return redirect()->back()->with('mensaje', 'Error al crear usuario')
-                                     ->with('tipo', 'danger');
+        return redirect()->back()->with('mensaje', 'Error al crear usuario')
+            ->with('tipo', 'danger');
     }
 }

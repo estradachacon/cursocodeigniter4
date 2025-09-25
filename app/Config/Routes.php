@@ -17,9 +17,16 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
+$routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
+$routes->post('login_post', '\App\Controllers\Web\Usuario::login_post', ['as' => 'usuario.login_post']);
+
+$routes->get('register', '\App\Controllers\Web\Usuario::register', ['as' => 'usuario.register']);
+$routes->post('register', '\App\Controllers\Web\Usuario::register_post', ['as' => 'usuario.register_post']);
+
 $routes->group('dashboard', function ($routes) {
     $routes->presenter("peliculas", ['controller' => 'Dashboard\Peliculas', 'only' => ['index', 'show', 'new', 'create', 'edit', 'update', 'delete']]); //esto crea las rutas para un CRUD cuando se usa la aplicacion con un navegador
     $routes->presenter("categorias", ['controller' => 'Dashboard\Categorias', 'only' => ['index', 'new', 'create', 'edit', 'update', 'delete']]);
+    /* $routes->get('usuario/contrasena', '\App\Controllers\Web\Usuario::probar_contrasena'); */
 });
 
 $routes->get("/", "Home::index");

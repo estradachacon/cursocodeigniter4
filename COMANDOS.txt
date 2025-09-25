@@ -113,3 +113,11 @@ Translation
 
   Esto devuelve como tal el echo de la consulta SQL en pantalla
   
+
+
+  -----------------------
+  Comandos para la toma de datos en un controlador
+$this->request → para acceder a los datos enviados (POST, GET, etc.).
+$this->response → para manejar la respuesta HTTP.
+$this->validator → para trabajar con los errores de validación.
+$this->validate() → método que dispara la validación usando reglas definidas en Config\Validation o las que le pases.

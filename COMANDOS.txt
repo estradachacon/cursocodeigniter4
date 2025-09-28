@@ -121,3 +121,21 @@ $this->request → para acceder a los datos enviados (POST, GET, etc.).
 $this->response → para manejar la respuesta HTTP.
 $this->validator → para trabajar con los errores de validación.
 $this->validate() → método que dispara la validación usando reglas definidas en Config\Validation o las que le pases.
+
+
+
+-------------------------
+Apagar/Encender Copilot Completion
+ctrl + shift + p
+>copilot: disable
+
+
+
+
+---------------------------
+APARTADO PARA REST API
+Tomar en cuenta que esto es para consumir data, la cual será una capa que utilizaremos para interconectar dos aplicaciones, acá obtendremos información como un Crud
+
+En la clase de los controladores tendrémos una estructura ligeramente diferente, 
+
+En la clase definiremos un tipo de controlador como ResourceController

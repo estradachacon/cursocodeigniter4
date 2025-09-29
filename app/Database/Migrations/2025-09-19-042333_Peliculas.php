@@ -23,8 +23,15 @@ class Peliculas extends Migration
                 'type' => 'TEXT',
                 'null' => false
             ],
+            'categoria_id' => [
+                'type' => 'INT',
+                'constraint' => 10,
+                'unsigned' => true,
+                'null' => false
+            ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('categoria_id', 'categorias', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('peliculas');
     }
 

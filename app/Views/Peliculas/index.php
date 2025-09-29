@@ -1,16 +1,19 @@
 <?= $this->extend('Layouts/mainbody') ?>
 <?= $this->section('content') ?>
 <h1>Listado de películas </h1>
+
     <a href='peliculas/new'><i class="fa-solid fa-pen-to-square">Crear nuevo</i></a>
     <a href='categorias'><i class="fa-solid fa-pen-to-square">Ver categorias</i></a>
     <table class="table table-striped table-hover table-bordered">
-        <tr>
+        <tr class='text-center'>
+            <th class="col-sm">ID</th>
             <th>Titulo</th>
             <th>Comentarios</th>
-            <th>Acciones</th>
+            <th class="col-sm-3">Acciones</th>
         </tr>
     <?php foreach ($peliculas as $key => $value) : ?>
         <tr>
+            <td class="text-center"><?= $value->id?></td>
             <td><?= $value->titles?></td>
             <td><?= $value->description?></td>
             <td>

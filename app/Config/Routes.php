@@ -17,12 +17,12 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
-/* $routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
+$routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
 $routes->post('login_post', '\App\Controllers\Web\Usuario::login_post', ['as' => 'usuario.login_post']);
 
 $routes->get('register', '\App\Controllers\Web\Usuario::register', ['as' => 'usuario.register']);
 $routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario.logout']);
-$routes->post('register', '\App\Controllers\Web\Usuario::register_post', ['as' => 'usuario.register_post']); */
+$routes->post('register', '\App\Controllers\Web\Usuario::register_post', ['as' => 'usuario.register_post']); 
 //$routes->get('usuario/crear', '\App\Controllers\Web\Usuario::create_user');
 
 

@@ -4,15 +4,17 @@
     <a href='categorias/new'><i class="fa-solid fa-pen-to-square">Crear categoria</i></a>
     <table class="table table-striped table-hover table-bordered">
         <tr>
+            <th class="text-center col-sm-1">ID</th>
             <th>Titulo</th>
             <th>Acciones</th>
         </tr>
     <?php foreach ($categorias as $key => $value) : ?>
         <tr>
+            <td class="text-center"><?= $value->id?></td>
             <td><?= $value->categoryName?></td>
             <td>
                 <a href='/dashboard/categorias/edit/<?= $value->id ?>'><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>Editar</a>
-                <form action="/dashboard/categorias/delete/<?= $value->id ?>" method="post">
+                <form class="text-center" action="/dashboard/categorias/delete/<?= $value->id ?>" method="post">
                     <button type="submit">Eliminar</button>
                 </form>
             </td>

@@ -49,9 +49,32 @@ class Validation extends BaseConfig
 
     // Reglas para el controlador de peliculas
     public $peliculas = [
-        'titles' => 'required|min_Length[3]|max_length[30]',
-        'description' => 'required|min_Length[3]|max_length[300]',
+        'titles' => [
+            'label'  => 'Título',
+            'rules'  => 'required|min_length[3]|max_length[30]',
+            'errors' => [
+                'required'   => 'El campo {field} es obligatorio.',
+                'min_length' => 'El campo {field} debe tener al menos {param} caracteres.',
+                'max_length' => 'El campo {field} no puede superar los {param} caracteres.',
+            ]
+        ],
+        'description' => [
+            'label'  => 'Descripción',
+            'rules'  => 'required|min_length[3]|max_length[300]',
+            'errors' => [
+                'required'   => 'El campo {field} es obligatorio.',
+            ]
+        ],
+        'categoria_id' => [
+            'label'  => 'Categoría',
+            'rules'  => 'required|is_natural_no_zero',
+            'errors' => [
+                'required'           => 'Debe seleccionar una {field}.',
+                'is_natural_no_zero' => 'Debe seleccionar una {field} válida.',
+            ]
+        ],
     ];
+
 
     public $usuarios = [
         'usuario' => 'required|min_Length[3]|max_length[20]|is_unique[usuarios.usuario,id,{id}]',

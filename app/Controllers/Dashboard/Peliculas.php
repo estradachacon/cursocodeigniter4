@@ -2,7 +2,9 @@
 
 namespace App\Controllers\Dashboard;
 
+use App\Controllers\Api\Categoria;
 use App\Controllers\BaseController;
+use App\Models\CategoriasModel;
 use App\Models\PeliculaModel;
 use Config\App;
 
@@ -22,9 +24,12 @@ class Peliculas extends BaseController
     }
     public function new()
     {
+        $categoriaModel = new CategoriasModel();
+
         echo view('peliculas/new', [
             'pelicula' => new PeliculaModel(),
-            'title' => 'Crear pelicula'
+            'title' => 'Crear pelicula',
+            'categorias' => $categoriaModel->findAll()
         ]);
     }
 
@@ -60,6 +65,7 @@ class Peliculas extends BaseController
         $peliculaModel->insert([
             'titles' => $this->request->getPost('titles'),
             'description' => $this->request->getPost('description'),
+            'categoria_id' => $this->request->getPost('categoria_id')
         ]);
 
         return redirect()->to('/dashboard/peliculas')
@@ -69,11 +75,13 @@ class Peliculas extends BaseController
 
     public function edit($id)
     {
+        $categoriaModel = new CategoriasModel();
         $peliculaModel = new PeliculaModel();
         echo view('peliculas/edit', [
             'title' => 'Editar pelicula',
             'id' => $id,
-            'pelicula' => $peliculaModel->find($id)
+            'pelicula' => $peliculaModel->find($id),
+            'categorias' => $categoriaModel->findAll()
         ]);
     }
 
@@ -84,6 +92,7 @@ class Peliculas extends BaseController
             $peliculaModel->update($id, [
                 'titles' => $this->request->getPost('titles'),
                 'description' => $this->request->getPost('description'),
+                'categoria_id' => $this->request->getPost('categoria_id')
             ]);
             return redirect()->to('/dashboard/peliculas')
                 ->with('mensaje', 'Pelicula actualizada con éxito')

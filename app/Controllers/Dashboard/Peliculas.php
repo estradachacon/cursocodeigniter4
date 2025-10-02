@@ -14,10 +14,14 @@ class Peliculas extends BaseController
     {
         $peliculaModel = new PeliculaModel();
 
+        $data = [
+            'peliculas' => $peliculaModel->select('peliculas.*, categoryName as catetitulo')->join('categorias', 'categorias.id = peliculas.categoria_id')->find()
+        ];
+
         echo view(
             "peliculas/index",
             [
-                'peliculas' => $peliculaModel->findAll(),
+                'peliculas' => $data,
                 'title' => 'Listado de peliculas'
             ]
         );

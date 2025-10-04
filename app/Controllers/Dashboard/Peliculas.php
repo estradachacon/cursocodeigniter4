@@ -5,6 +5,8 @@ namespace App\Controllers\Dashboard;
 use App\Controllers\Api\Categoria;
 use App\Controllers\BaseController;
 use App\Models\CategoriasModel;
+use App\Models\ImagenModel;
+use App\Models\PeliculaImagenModel;
 use App\Models\PeliculaModel;
 use Config\App;
 
@@ -14,9 +16,11 @@ class Peliculas extends BaseController
     {
         $peliculaModel = new PeliculaModel();
 
-        $data = [
+        $this->asignar_imagen();
+
+/*         $data = [
             'peliculas' => $peliculaModel->select('peliculas.*, categoryName as catetitulo')->join('categorias', 'categorias.id = peliculas.categoria_id')->find()
-        ];
+        ]; 
 
         echo view(
             "peliculas/index",
@@ -24,6 +28,15 @@ class Peliculas extends BaseController
                 'peliculas' => $data,
                 'title' => 'Listado de peliculas'
             ]
+        ); */
+
+        $data = [
+            'title' => 'Listado de peliculas',
+            'peliculas' => $peliculaModel->join('categorias', 'categorias.id = peliculas.categoria_id')->find()
+            
+        ];
+        echo view(
+            'peliculas/index', $data
         );
     }
     public function new()
@@ -33,7 +46,7 @@ class Peliculas extends BaseController
         echo view('peliculas/new', [
             'pelicula' => new PeliculaModel(),
             'title' => 'Crear pelicula',
-            'categorias' => $categoriaModel->findAll()
+            'categorias' => $categoriaModel->find()
         ]);
     }
 
@@ -79,13 +92,13 @@ class Peliculas extends BaseController
 
     public function edit($id)
     {
-        $categoriaModel = new CategoriasModel();
         $peliculaModel = new PeliculaModel();
+        $categoriaModel = new CategoriasModel();
+        
         echo view('peliculas/edit', [
-            'title' => 'Editar pelicula',
             'id' => $id,
             'pelicula' => $peliculaModel->find($id),
-            'categorias' => $categoriaModel->findAll()
+            'categorias' => $categoriaModel->find()
         ]);
     }
 
@@ -117,5 +130,23 @@ class Peliculas extends BaseController
         return redirect()->to('/dashboard/peliculas')
             ->with('mensaje', 'Pelicula eliminada con éxito')
             ->with('tipo', 'success'); //para el sweetalert2, este es el mensaje en toast;;
+    }
+
+    private function generar_imagen()
+    {
+        $imagenModel = new ImagenModel();
+        $imagenModel->insert([
+            'imagen' => date('Y-m-d H:m:s'),
+            'extension' => 'Pendiente',
+            'data' => 'Pendiente',
+        ]);
+    }
+    private function asignar_imagen()
+    {
+        $peliculaImagenModel = new PeliculaImagenModel();
+        $peliculaImagenModel->insert([
+            'imagen_id' => 2,
+            'pelicula_id' => 7,
+        ]);
     }
 }

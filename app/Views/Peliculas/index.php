@@ -12,12 +12,12 @@
             <th>Categoria</th>
             <th class="col-sm-3">Acciones</th>
         </tr>
-    <?php foreach ($peliculas['peliculas'] as $pelicula) : ?>
+    <?php foreach ($peliculas as $pelicula) : ?>
         <tr>
             <td class="text-center"><?= $pelicula->id?></td>
             <td><?= $pelicula->titles?></td>
             <td><?= $pelicula->description?></td>
-            <td><?= $pelicula->catetitulo?></td>
+            <td><?= $pelicula->categoryName?></td>
             <td>
                 <a href='peliculas/show/<?= $pelicula->id ?>'><i class="fa-solid fa-pen-to-square">Ver pelicula</i></a>
                 <a href='peliculas/edit/<?= $pelicula->id ?>'><i class="fa-solid fa-pen-to-square">Editar</i></a>

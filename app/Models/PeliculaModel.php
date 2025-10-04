@@ -10,4 +10,9 @@ class PeliculaModel extends Model
     protected $returnType       = 'object';
     protected $primaryKey = 'id';
     protected $allowedFields = ['titles', 'description', 'categoria_id'];
+
+    public function getImagesByID (){
+
+    }
 }
+

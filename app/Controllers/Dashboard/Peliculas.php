@@ -16,7 +16,7 @@ class Peliculas extends BaseController
     {
         $peliculaModel = new PeliculaModel();
 
-        $this->asignar_imagen();
+       /*  $this->asignar_imagen(); */
 
 /*         $data = [
             'peliculas' => $peliculaModel->select('peliculas.*, categoryName as catetitulo')->join('categorias', 'categorias.id = peliculas.categoria_id')->find()
